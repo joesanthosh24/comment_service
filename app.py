@@ -11,6 +11,9 @@ comments = {
     '2': {'user_id': '2', 'post_id': '2', 'comment': 'I did not know that'}
 }
 
+userservice_api_url = 'https://userservicecontainerapp--nsd4hlx.purplemoss-ca6cdeba.canadacentral.azurecontainerapps.io'
+postservice_api_url = 'https://postservicecontainerapp--7qozew4.purplemoss-ca6cdeba.canadacentral.azurecontainerapps.io'
+
 @app.route('/')
 def hello():
     return "Hello, welcome to the comment service"
@@ -23,13 +26,13 @@ def comment(id):
 
     if comment_info:
         user_response = requests.get(
-            f'http://127.0.0.1:5000/user/{comment_info["user_id"]}'
+            f'{userservice_api_url}/user/{comment_info["user_id"]}'
         )
         if user_response.status_code == 200:
             user = user_response.json()
         
         post_response = requests.get(
-            f'http://127.0.0.1:5001/post/{comment_info["post_id"]}'
+            f'{postservice_api_url}/post/{comment_info["post_id"]}'
         )
         if post_response.status_code == 200:
             post = post_response.json()
@@ -46,8 +49,8 @@ def create_comment():
     user_id = data.get('user_id')
     post_id = data.get('post_id')
 
-    user_response = requests.get(f'http://127.0.0.1:5000/user/{user_id}')
-    post_response = requests.get(f'http://127.0.0.1:5001/post/{post_id}')
+    user_response = requests.get(f'{userservice_api_url}/user/{user_id}')
+    post_response = requests.get(f'{postservice_api_url}/post/{post_id}')
 
     if user_response.status_code == 200 and post_response.status_code == 200:
         comment = data.get('comment')
@@ -75,13 +78,13 @@ def update_comment(id):
         comments[id]['comment'] = updated_comment
 
         user_response = requests.get(
-            f'http://127.0.0.1:5000/user/{comments[id]["user_id"]}'
+            f'{userservice_api_url}/user/{comments[id]["user_id"]}'
         )
         if user_response.status_code == 200:
             user = user_response.json()
         
         post_response = requests.get(
-            f'http://127.0.0.1:5001/post/{comments[id]["post_id"]}'
+            f'{postservice_api_url}/post/{comments[id]["post_id"]}'
         )
         if post_response.status_code == 200:
             post = post_response.json()
