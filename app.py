@@ -11,7 +11,7 @@ comments = {
     '2': {'user_id': '2', 'post_id': '2', 'comment': 'I did not know that'}
 }
 
-userservice_api_url = 'https://userservicecontainerapp--nsd4hlx.purplemoss-ca6cdeba.canadacentral.azurecontainerapps.io'
+userservice_api_url = 'https://userservicecontainerapp--3pbm4mj.purplemoss-ca6cdeba.canadacentral.azurecontainerapps.io'
 postservice_api_url = 'https://postservicecontainerapp--7qozew4.purplemoss-ca6cdeba.canadacentral.azurecontainerapps.io'
 
 @app.route('/')
